@@ -1,5 +1,3 @@
-# not yet
-
 import sys
 
 sys.stdin = open('input.txt')
@@ -17,12 +15,7 @@ for tc in range(1, T+1):
         if token.isdecimal():
             postfix.append(token)
         else:
-            if len(stack) == 2:
-                temp = stack.pop()
-                postfix.append(temp)
-                stack.append(token)
-            else:
-                stack.append(token)
+            stack.append(token)
 
     while stack:
         temp = stack.pop()
