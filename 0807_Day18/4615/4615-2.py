@@ -16,18 +16,13 @@ def change_stone_black(start_i, start_j):
                 if board[ni][nj] == 'W':
                     change_stones.append([ni, nj])
                 elif board[ni][nj] == 'B':
+                    for pair in change_stones:
+                        board[pair[0]][pair[1]] = 'B'
                     break
                 else:
-                    change_stones =[]
                     break
             else:
-                change_stones = []
                 break
-        if change_stones == []:
-            pass
-        else:
-            for pair in change_stones:
-                board[pair[0]][pair[1]] = 'B'
 
 def change_stone_white(start_i, start_j):
     board[start_i][start_j] = 'W'
@@ -42,18 +37,13 @@ def change_stone_white(start_i, start_j):
                 if board[ni][nj] == 'B':
                     change_stones.append([ni, nj])
                 elif board[ni][nj] == 'W':
+                    for pair in change_stones:
+                        board[pair[0]][pair[1]] = 'W'
                     break
                 else:
-                    change_stones = []
                     break
             else:
-                change_stones = []
                 break
-        if change_stones == []:
-            pass
-        else:
-            for pair in change_stones:
-                board[pair[0]][pair[1]] = 'W'
 
 
 # Testcase 수

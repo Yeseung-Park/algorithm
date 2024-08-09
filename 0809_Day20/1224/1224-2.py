@@ -18,18 +18,28 @@ def isp(oper):    # 스택 안에 있을 때 우선순위를 지정하는 함수
     elif oper in ('+', '-'):
         return 1
 
-
+def operators(num1, num2, token):    # 연산자를 만났을 때 계산을 나타내는 함수
+    if token == '+':
+        return num1 + num2
+    elif token == '-':
+        return num1 - num2
+    elif token == '*':
+        return num1 * num2
+    elif token == '/':
+        return num1 // num2
 
 # Testcase 수
-T = int(input())
+# T = int(input())
 # Testcase 만큼 반복
-for tc in range(1, T+1):
+for tc in range(1, 11):
 
+    N = int(input())
     infix = list(input())
     stack = []
     top = -1
-    postfix = []    # 후위표기법의 결과를 담는 리스트
+    postfix = []
 
+    # 후위표기법 변환
     for token in infix:
         if token.isdecimal():    # 숫자면
             postfix.append(token)    # postfix에 append
@@ -61,4 +71,16 @@ for tc in range(1, T+1):
         temp = stack.pop()
         postfix.append(temp)    # 남아있는 애들을 모두 pop하고 postfix에 append
 
-    print(f"#{tc} {''.join(postfix)}")
+
+    # 계산하기
+    for token in postfix:
+        if token.isdecimal():  # 숫자면 stack에 push
+            stack.append(int(token))
+        else:  # 나머지 연산자를 만났을 때
+            num2 = stack.pop()
+            num1 = stack.pop()
+            temp = operators(num1, num2, token)  # 잘 계산해주고
+            stack.append(temp)  # stack에 push
+
+    result = stack.pop()
+    print(f'#{tc} {result}')
