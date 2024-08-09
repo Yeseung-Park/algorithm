@@ -9,7 +9,7 @@ def change_stone_black(start_i, start_j):
     dj = [1, 0, -1, 0, 1, -1, 1, -1]    # 오른쪽 아래 왼쪽 위 오른쪽아래 왼쪽아래 왼쪽위 오른쪽위
     for k in range(8):
         change_stones = []
-        for l in range(1, N):
+        for l in range(1, N+1):
             ni = start_i + di[k]*l
             nj = start_j + dj[k]*l
             if 0 <= ni < N and 0 <= nj < N:
@@ -35,7 +35,7 @@ def change_stone_white(start_i, start_j):
     dj = [1, 0, -1, 0, 1, -1, 1, -1]
     for k in range(8):
         change_stones = []
-        for l in range(1, N):
+        for l in range(1, N+1):
             ni = start_i + di[k]*l
             nj = start_j + dj[k]*l
             if 0 <= ni < N and 0 <= nj < N:
