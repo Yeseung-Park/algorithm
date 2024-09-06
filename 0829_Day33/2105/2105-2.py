@@ -11,7 +11,6 @@ def find_route(i, j, direction, visit, dessert, length):    # 시작 행, 열, �
         if length[0] == length[2] and length[1] == length[3] and 0 not in length:
             if len(dessert) > maximum:
                 maximum = len(dessert)
-                return
     if 0 <= i+di[direction] < N and 0 <= j+dj[direction] < N and visit[i+di[direction]][j+dj[direction]] == 0 and dessert_cafe[i+di[direction]][j+dj[direction]] not in dessert:
         i += di[direction]
         j += dj[direction]
