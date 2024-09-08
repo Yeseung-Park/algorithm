@@ -1,12 +1,12 @@
-import sys
-
-sys.stdin = open('input.txt')
+# import sys
+#
+# sys.stdin = open('input.txt')
 
 def find(i, j, k, left):    # i, j: 현재 위치의 행과 열, left: 깎을 수 있는 횟수
     global maximum
-    if len(path) > maximum:
-        maximum = len(path)
     if k > 3:
+        if len(path) > maximum:
+            maximum = len(path)
         return
     if 0 <= i+di[k] < N and 0 <= j+dj[k] < N and land[i+di[k]][j+dj[k]] < land[i][j] and visited[i+di[k]][j+dj[k]] == 0:
         visited[i+di[k]][j+dj[k]] = 1
@@ -14,7 +14,7 @@ def find(i, j, k, left):    # i, j: 현재 위치의 행과 열, left: 깎을 �
         find(i+di[k], j+dj[k], 0, left)
         visited[i+di[k]][j+dj[k]] = 0
         path.pop()
-    elif 0 <= i+di[k] < N and 0 <= j+dj[k] < N and left != 0 and visited[i+di[k]][j+dj[k]] == 0:
+    elif 0 <= i+di[k] < N and 0 <= j+dj[k] < N and left == 1 and visited[i+di[k]][j+dj[k]] == 0:
         if land[i+di[k]][j+dj[k]]-land[i][j] < K:
             number = 1
             while number < K+1:
