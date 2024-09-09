@@ -4,9 +4,9 @@ sys.stdin = open('input.txt')
 
 def find(i, j, direction, left):    # i, j: 현재 위치의 행과 열, left: 깎을 수 있는 횟수
     global maximum
+    if len(path) > maximum:
+        maximum = len(path)
     if direction > 3:
-        if len(path) > maximum:
-            maximum = len(path)
         return
     if 0 <= i+di[direction] < N and 0 <= j+dj[direction] < N and land[i+di[direction]][j+dj[direction]] < land[i][j] and visited[i+di[direction]][j+dj[direction]] == 0:
         visited[i+di[direction]][j+dj[direction]] = 1
@@ -15,16 +15,16 @@ def find(i, j, direction, left):    # i, j: 현재 위치의 행과 열, left: �
         visited[i+di[direction]][j+dj[direction]] = 0
         path.pop()
     elif 0 <= i+di[direction] < N and 0 <= j+dj[direction] < N and left != 0 and visited[i+di[direction]][j+dj[direction]] == 0:
-        if land[i+di[direction]][j+dj[direction]]-land[i][j] < K:
             number = K
             while number != 0:
-                land[i+di[direction]][j+dj[direction]] -= number
-                path.append(land[i+di[direction]][j+dj[direction]])
-                visited[i+di[direction]][j+dj[direction]] = 1
-                find(i+di[direction], j+dj[direction], 0, left-1)
-                land[i+di[direction]][j+dj[direction]] += number
-                visited[i+di[direction]][j+dj[direction]] = 0
-                path.pop()
+                if land[i+di[direction]][j+dj[direction]] - number < land[i][j]:
+                    land[i+di[direction]][j+dj[direction]] -= number
+                    path.append(land[i+di[direction]][j+dj[direction]])
+                    visited[i+di[direction]][j+dj[direction]] = 1
+                    find(i+di[direction], j+dj[direction], 0, left-1)
+                    land[i+di[direction]][j+dj[direction]] += number
+                    visited[i+di[direction]][j+dj[direction]] = 0
+                    path.pop()
                 number -= 1
     find(i, j, direction+1, left)
 
